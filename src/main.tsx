@@ -1,7 +1,6 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
-import App from './App.tsx'
-import './index.css'
+import './index.scss'
 
 interface Experience {
     lp: number;
@@ -24,8 +23,8 @@ const cvData: CVData = {
     lastName: "Stasiak",
     education: [
         "IV Liceum Ogólnokształcące w Kaliszu",
-        'PWZS W Kaliszu - studia I stopnia "Mechanika i Budowa Maszyn"',
-        'PWZS W Kaliszu - studia II stopnia "Mechanika i Budowa Maszyn"',
+        'PWSZ W Kaliszu - studia I stopnia "Mechanika i Budowa Maszyn"',
+        'PWSZ W Kaliszu - studia II stopnia "Mechanika i Budowa Maszyn"',
     ],
     position: "Konstruktor",
     experience: [
@@ -44,13 +43,37 @@ const cvData: CVData = {
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-      <header>
-          <h1>
-              CV {cvData.name} {cvData.lastName}
-          </h1>
+      <main>
           <aside>
-              <img src={cvData.photo} alt={cvData.name}/>
+              <img src={cvData.photo} alt={`${cvData.name} ${cvData.lastName} photo`}/>
+              <hr/>
+              <div className={"info"}>
+                  <h1>{cvData.name} {cvData.lastName}</h1>
+                  <small>{cvData.position}</small>
+              </div>
           </aside>
-      </header>
+          <section className={'life-section'}>
+              <div>
+                  <h2>Doświadczenie</h2>
+                  <ul>
+                      {cvData.experience.map((exp) => (
+                          <li key={exp.lp}>
+                              {exp.description} - {exp.year}
+                          </li>
+                      ))}
+                  </ul>
+              </div>
+              <div>
+                  <h2>Edukacja</h2>
+                  <ul>
+                      {cvData.education.map((edu) => (
+                          <li key={edu}>
+                              {edu}
+                          </li>
+                      ))}
+                  </ul>
+              </div>
+          </section>
+      </main>
   </StrictMode>,
 )
