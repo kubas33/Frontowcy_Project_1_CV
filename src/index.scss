@@ -29,10 +29,15 @@ main {
   justify-items: center;
   height: calc(100vh - $body-padding * 2);
   box-sizing: border-box;
+  grid-gap: clamp(0.5rem, 1vw, 1rem);
 
   hr {
     margin: 1rem 0;
     color: white;
+  }
+
+  @media (max-width: 540px) {
+    grid-template-columns: 1fr;
   }
 }
 
